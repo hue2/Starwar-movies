@@ -4,7 +4,7 @@ export const MovieContext = createContext();
 
 //Central data store among components
 export const MovieContextProvider = props => {
-    //storing original list for the 'All' filter
+    //originalMovieList for restoring to original list for the 'All' filter
     const [ originalMovieList, setOriginalList] = useState();
     const [ movieList, setMovies ] = useState();
     const [ decadeFilter, setFilter ] = useState();
@@ -15,15 +15,15 @@ export const MovieContextProvider = props => {
         async function fetchData() {
             try {
                 let movieResponse = await fetchMovies();  
-                let movieList = await fetchMovieDetail(movieResponse.Search);
+                let movies = await fetchMovieDetail(movieResponse.Search);
                 
                 //sort the movie list by year
-                movieList.sort((a, b) => b.Year - a.Year);
+                movies.sort((a, b) => b.Year - a.Year);
 
-                let movieFilter = getDecadeFilter(movieList); 
-                setOriginalList(movieList);
+                let movieFilter = getDecadeFilter(movies); 
+                setOriginalList(movies);
                 setFilter(movieFilter);   
-                setMovies(movieList);
+                setMovies(movies);
             }
             catch(err) {      
                 console.log(err);
@@ -35,10 +35,10 @@ export const MovieContextProvider = props => {
             return await data.json()
         }
         
-        async function fetchMovieDetail(allMovies) {
+        async function fetchMovieDetail(movies) {
             try {
                 return Promise.all(
-                    allMovies.map(async movie => { 
+                    movies.map(async movie => { 
                         let movieDetail = await fetch(`${process.env.REACT_APP_MOVIE_BASE_URL}/?i=${movie.imdbID}&${apiKey}`);
                         let response = await movieDetail.json();
                         return { ...movie, Detail: response.Plot, Rated: response.Rated, Runtime: response.Runtime, Released: response.Released };
@@ -51,16 +51,16 @@ export const MovieContextProvider = props => {
         }
     
         //Get the list of decades for filter
-        function getDecadeFilter(movieList) {
+        function getDecadeFilter(movies) {
             let movieFilter = [];
-            if (Array.isArray(movieList) && movieList.length > 0) {
-                for (const movie of movieList) {
+            if (Array.isArray(movies) && movies.length > 0) {
+                for (const movie of movies) {
                     let decade = calculateDecade(movie.Year);
                     if (movieFilter.indexOf(decade) === -1) {
                         movieFilter.push(decade);
                     } 
                 }
-                movieFilter.sort();
+                movieFilter.sort().reverse();
             }
             return movieFilter;
         }
