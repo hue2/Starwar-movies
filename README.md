@@ -1,1 +1,1 @@
-A web site that display the top 10 result for Star Wars movies over the past decades from omdbapi.com
+A web site that display the top 10 result for Star Wars movies over the past decades from omdbapi.com.

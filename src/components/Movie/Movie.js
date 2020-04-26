@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, createContext  } from 'react';
+import React, { useContext  } from 'react';
 import { MovieContext } from '../../context/MovieContext';
+import './Movie.scss';
 
 export default function Movie() {
     const { movie }= useContext(MovieContext);
@@ -8,10 +9,10 @@ export default function Movie() {
     return (
         <>
             <div className="flex-row">
-                {movieList && movieList.length > 0 && movieList.map(movie => 
+                {Array.isArray(movieList) && movieList.length > 0 ? movieList.map(movie => 
                     <div key={movie.imdbID} className="container">
                         <div>
-                            <img className="img-style" src={require(`../../assets/img/${movie.imdbID}.jpg`)}></img>
+                            <img className="img-style" src={require(`../../assets/img/${movie.imdbID}.jpg`)} alt={movie.Poster}></img>
                         </div>
                         <div className="m-left-15 txt-align-left">
                             <h3>{movie.Title}</h3>
@@ -23,11 +24,14 @@ export default function Movie() {
                             </div>
                             <p>{movie.Detail}</p>
                             <div>
-                                <a href={`https://www.imdb.com/title/${movie.imdbID}`} className="view-link" target="_blank">View on IMDB</a>
+                                <a href={`https://www.imdb.com/title/${movie.imdbID}`} className="view-link" target="_blank" rel="noopener noreferrer">View on IMDB</a>
                             </div>
                         </div>
-                    </div>        
-                    )
+                    </div>)  
+                    :
+                    <div>
+                        <h4>No movie was found</h4>
+                    </div>      
                 }
             </div>
         </>
