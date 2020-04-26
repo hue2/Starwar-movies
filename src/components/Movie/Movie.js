@@ -2,7 +2,7 @@ import React, { useContext  } from 'react';
 import { MovieContext } from '../../context/MovieContext';
 
 export default function Movie() {
-    const { movie }= useContext(MovieContext);
+    const { movie, loading } = useContext(MovieContext);
     const [ movieList ] = movie;
 
     return (
@@ -34,8 +34,8 @@ export default function Movie() {
                         </div>
                     </div>)  
                     :
-                    <div>
-                        <h4>No movie was found</h4>
+                    <div className="container">
+                        <h4>{loading ? "Loading..." : "No movies were found"}</h4>
                     </div>      
                 }
             </div>

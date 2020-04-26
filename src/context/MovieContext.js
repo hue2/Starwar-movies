@@ -7,6 +7,7 @@ export const MovieContextProvider = props => {
 
     //originalMovieList is for restoring to the original list when the 'All' filter is clicked
     const [ originalMovieList, setOriginalList] = useState();
+    const [ loading, setLoading] = useState(true);
     const [ movieList, setMovies ] = useState();
     const [ decadeFilter, setFilter ] = useState();
 
@@ -15,16 +16,18 @@ export const MovieContextProvider = props => {
 
         async function fetchData() {
             try {
+                setLoading(true);
                 let movieResponse = await fetchMovies();  
                 let movies = await fetchMovieDetail(movieResponse.Search);
                 
                 //sort the movie list by year in descending order
                 movies.sort((a, b) => b.Year - a.Year);
-
                 let movieFilter = getDecadeFilter(movies); 
+
                 setOriginalList(movies);
                 setFilter(movieFilter);   
                 setMovies(movies);
+                setLoading(false);
             }
             catch(err) {      
                 console.log(err);
@@ -91,7 +94,7 @@ export const MovieContextProvider = props => {
     }   
 
     return (
-        <MovieContext.Provider value={{ movie: [movieList], filter: [ decadeFilter, filterMovies] }}>
+        <MovieContext.Provider value={{ movie: [movieList], filter: [ decadeFilter, filterMovies], loading }}>
             {props.children}
         </MovieContext.Provider>
     )
