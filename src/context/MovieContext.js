@@ -18,7 +18,7 @@ export const MovieContextProvider = props => {
                 let movieList = await fetchMovieDetail(movieResponse.Search);
                 
                 //sort the movie list by year
-                movieList.sort((a, b) => a.Year - b.Year);
+                movieList.sort((a, b) => b.Year - a.Year);
 
                 let movieFilter = getDecadeFilter(movieList); 
                 setOriginalList(movieList);
@@ -56,7 +56,7 @@ export const MovieContextProvider = props => {
             if (Array.isArray(movieList) && movieList.length > 0) {
                 for (const movie of movieList) {
                     let decade = calculateDecade(movie.Year);
-                    if (movieFilter.indexOf(decade) <= 0) {
+                    if (movieFilter.indexOf(decade) === -1) {
                         movieFilter.push(decade);
                     } 
                 }
