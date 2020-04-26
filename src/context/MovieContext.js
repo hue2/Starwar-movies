@@ -16,7 +16,6 @@ export const MovieContextProvider = props => {
 
         async function fetchData() {
             try {
-                setLoading(true);
                 let movieResponse = await fetchMovies();  
                 let movies = await fetchMovieDetail(movieResponse.Search);
                 
