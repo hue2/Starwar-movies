@@ -12,7 +12,9 @@ export default function Movie() {
                 {Array.isArray(movieList) && movieList.length > 0 ? movieList.map(movie => 
                     <div key={movie.imdbID} className="container">
                         <div>
-                            <img className="img-style" src={require(`../../assets/img/${movie.imdbID}.jpg`)} alt={movie.Poster}></img>
+                            <img className="img-style" 
+                                src={require(`../../assets/img/${movie.imdbID}.jpg`)} 
+                                alt={movie.Poster} />
                         </div>
                         <div className="m-left-15 txt-align-left">
                             <h3>{movie.Title}</h3>
@@ -24,7 +26,11 @@ export default function Movie() {
                             </div>
                             <p>{movie.Detail}</p>
                             <div>
-                                <a href={`https://www.imdb.com/title/${movie.imdbID}`} className="view-link" target="_blank" rel="noopener noreferrer">View on IMDB</a>
+                                <a href={`https://www.imdb.com/title/${movie.imdbID}`} 
+                                    className="view-link" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer">View on IMDB
+                                </a>
                             </div>
                         </div>
                     </div>)  

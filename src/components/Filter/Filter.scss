@@ -2,12 +2,7 @@ $btn-color: #f1f2f3;
 $active-btn-color: #005dab;
 $border-color: #d5d5d5;
 
-@mixin filter-btn-bg($color : $btn-color) {
-    background: $color;
-}
-
 .filter-btn {
-    @include filter-btn-bg();
     min-width: 65px;
     padding: 10px 15px 10px 15px;
     border: 1px solid $border-color;

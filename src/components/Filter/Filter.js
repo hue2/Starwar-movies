@@ -15,11 +15,17 @@ export default function Filter() {
 
     return (
         <div className="filter-container">
-            <button key="0" className={`filter-btn ${activeIdBtn === 0 ? "active" : ""}`} onClick={() => changeDecade(0)}>All</button>
+            <button key="0" 
+                className={`filter-btn ${activeIdBtn === 0 ? "active" : ""}`} 
+                onClick={() => changeDecade(0)}>All
+            </button>
             {
                 Array.isArray(decadeFilter) && decadeFilter.length > 0
                     && decadeFilter.map(filter => 
-                    <button key={filter} id={filter} className={`filter-btn ${activeIdBtn === +filter ? "active" : ""}`} onClick={() => changeDecade(filter)}>{filter}'s</button>
+                    <button key={filter} id={filter} 
+                        className={`filter-btn ${activeIdBtn === +filter ? "active" : ""}`} 
+                        onClick={() => changeDecade(filter)}>{filter}'s
+                    </button>
                 )
             }
         </div>
