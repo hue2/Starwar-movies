@@ -4,7 +4,8 @@ export const MovieContext = createContext();
 
 //Central data store among components
 export const MovieContextProvider = props => {
-    //originalMovieList for restoring to original list for the 'All' filter
+
+    //originalMovieList is for restoring to the original list when the 'All' filter is clicked
     const [ originalMovieList, setOriginalList] = useState();
     const [ movieList, setMovies ] = useState();
     const [ decadeFilter, setFilter ] = useState();
@@ -17,7 +18,7 @@ export const MovieContextProvider = props => {
                 let movieResponse = await fetchMovies();  
                 let movies = await fetchMovieDetail(movieResponse.Search);
                 
-                //sort the movie list by year
+                //sort the movie list by year in descending order
                 movies.sort((a, b) => b.Year - a.Year);
 
                 let movieFilter = getDecadeFilter(movies); 
@@ -41,7 +42,12 @@ export const MovieContextProvider = props => {
                     movies.map(async movie => { 
                         let movieDetail = await fetch(`${process.env.REACT_APP_MOVIE_BASE_URL}/?i=${movie.imdbID}&${apiKey}`);
                         let response = await movieDetail.json();
-                        return { ...movie, Detail: response.Plot, Rated: response.Rated, Runtime: response.Runtime, Released: response.Released };
+                        return { ...movie, 
+                            Detail: response.Plot, 
+                            Rated: response.Rated, 
+                            Runtime: response.Runtime, 
+                            Released: response.Released 
+                        };
                     })
                 );
             }
@@ -74,6 +80,7 @@ export const MovieContextProvider = props => {
     }
 
     function filterMovies(year) {
+        //Restore the list if the year is 0 ("All" filter option) 
         if (year === 0) {
             setMovies(originalMovieList);
         }
