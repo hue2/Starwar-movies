@@ -16,9 +16,10 @@ $orange-btn-color: #f9b44a;
     padding: 15px;
     background: white;
     width: 40%;
-    margin: auto;
     margin-top: 2vh;
-
+    margin-right: 15px;
+    margin-left: 15px;
+    
     @include phone {
         width: auto;
         margin: 8px;

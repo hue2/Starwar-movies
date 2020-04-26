@@ -7,7 +7,7 @@ export default function Movie() {
 
     return (
         <>
-            <div className="flex-row">
+            <div className="flex-row justify-center">
                 {Array.isArray(movieList) && movieList.length > 0 ? movieList.map(movie => 
                     <div key={movie.imdbID} className="container">
                         <div>
@@ -23,7 +23,7 @@ export default function Movie() {
                                 <div className="runtime-container">{movie.Runtime}</div>
                                 <div className="release-container">{movie.Released}</div>
                             </div>
-                            <p>{movie.Detail}</p>
+                                <p>{movie.Detail}</p>
                             <div>
                                 <a href={`https://www.imdb.com/title/${movie.imdbID}`} 
                                     className="view-link" 
