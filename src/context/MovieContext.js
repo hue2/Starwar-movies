@@ -4,6 +4,7 @@ export const MovieContext = createContext();
 
 //Central data store among components
 export const MovieContextProvider = props => {
+    //storing original list for the 'All' filter
     const [ originalMovieList, setOriginalList] = useState();
     const [ movieList, setMovies ] = useState();
     const [ decadeFilter, setFilter ] = useState();
@@ -15,7 +16,11 @@ export const MovieContextProvider = props => {
             try {
                 let movieResponse = await fetchMovies();  
                 let movieList = await fetchMovieDetail(movieResponse.Search);
-                let movieFilter = getDecadeFilter(movieList.sort((a, b) => a.Year - b.Year)); 
+                
+                //sort the movie list by year
+                movieList.sort((a, b) => a.Year - b.Year);
+
+                let movieFilter = getDecadeFilter(movieList); 
                 setOriginalList(movieList);
                 setFilter(movieFilter);   
                 setMovies(movieList);
@@ -50,7 +55,7 @@ export const MovieContextProvider = props => {
             let movieFilter = [];
             if (Array.isArray(movieList) && movieList.length > 0) {
                 for (const movie of movieList) {
-                    let decade = CalculateDecade(movie.Year);
+                    let decade = calculateDecade(movie.Year);
                     if (movieFilter.indexOf(decade) <= 0) {
                         movieFilter.push(decade);
                     } 
@@ -64,7 +69,7 @@ export const MovieContextProvider = props => {
     }, []);
 
     //Calculate the decade that the year belongs to
-    function CalculateDecade(year) {
+    function calculateDecade(year) {
         return Math.floor(year / 10) * 10;
     }
 
@@ -73,7 +78,7 @@ export const MovieContextProvider = props => {
             setMovies(originalMovieList);
         }
         else {
-            let data = originalMovieList.filter(movie => CalculateDecade(movie.Year) === year);
+            let data = originalMovieList.filter(movie => calculateDecade(movie.Year) === year);
             setMovies(data);
         }
     }   

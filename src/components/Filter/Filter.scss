@@ -11,9 +11,10 @@ $border-color: #d5d5d5;
     min-width: 65px;
     padding: 10px 15px 10px 15px;
     border: 1px solid $border-color;
-    font-weight: 500;
+    font-weight: bold;
     box-shadow: inset 0 1px 3px $border-color;
     background-color: white;
+    color: #606060;
     cursor: pointer;
     &:hover {
         background: $active-btn-color;
