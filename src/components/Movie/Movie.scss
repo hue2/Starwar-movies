@@ -1,0 +1,61 @@
+$border-color: #d5d5d5;
+$container-shadow: 3px 3px 4px $border-color;
+$container-bg: #e8ebee;
+$orange-btn-color: #f9b44a;
+
+.light-border {
+    border: 1px solid #d5d5d5;
+}
+
+.container {
+    @extend .light-border;
+    display: flex;
+    box-shadow: $container-shadow;
+    border-radius: 5px;
+    padding: 15px;
+    background: white;
+    width: 40%;
+    margin: auto;
+    margin-top: 2vh;
+}
+
+.img-style {
+    max-width: 150px;
+    border-radius: 10px;
+}
+
+.rate-container {
+    @extend .light-border;
+    padding: 5px;
+    border-radius: 4px;
+    min-width: 40px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.runtime-container {
+    margin-left: 20px;
+    margin-top: 4px;
+}
+
+.release-container {
+    margin-top: 4px;
+    text-align: end;
+    margin-left: auto;
+}
+
+.view-link {
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    background: $orange-btn-color;
+    color: white;
+    border: 1px solid;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    float: right;
+}
+
+.gray-line {
+    border-top: 1px solid $border-color;
+}

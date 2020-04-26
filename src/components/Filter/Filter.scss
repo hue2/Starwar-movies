@@ -1,0 +1,50 @@
+$btn-color: #f1f2f3;
+$btn-border-color: #d8dde1;
+$active-btn-color: #005dab;
+$border-color: #d5d5d5;
+
+@mixin filter-btn-bg($color : $btn-color) {
+    background: $color;
+}
+
+.filter-btn {
+    @include filter-btn-bg();
+    min-width: 65px;
+    padding: 10px 15px 10px 15px;
+    border: 1px solid $btn-border-color;
+    font-weight: 500;
+    box-shadow: inset 0 1px 3px #d5d5d5;
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+        background: #005dab;
+        color: white;
+    }
+}
+
+.active {
+    background-color: $active-btn-color;
+    color: white;
+    box-shadow: 3px 2px 4px $border-color;
+}
+
+.filter-container {
+    background: white;
+    border: 1px solid #d5d5d5;
+    padding: 10px;
+
+    button:not(:last-child) {
+        border-right: none;
+    }
+    
+    button:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    button:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+}
+

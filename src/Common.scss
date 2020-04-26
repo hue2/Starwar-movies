@@ -1,0 +1,17 @@
+.display-flex {
+    display: flex;
+}
+
+.txt-align-left {
+    text-align: left;
+}
+
+.m-left-15 {
+    margin-left: 15px;
+}
+
+.flex-row {
+    @extend .display-flex;
+    flex-flow: row wrap;
+}
+

@@ -1,11 +1,21 @@
 import React from 'react';
-import './App.css';
-import Movies from './Movies';
+import './App.scss';
+import Movie from './components/Movie/Movie';
+import Filter from './components/Filter/Filter';
+import './components/Movie/Movie.scss';
+import './Common.scss';
+import { MovieContextProvider } from './context/MovieContext';
 
 function App() {
   return (
     <div className="App">
-        <Movies />
+        <div className="nav">
+          <img src={require("./assets/img/starwars-logo.png")} className="logo" />
+        </div>
+        <MovieContextProvider>
+          <Filter />
+          <Movie />
+        </MovieContextProvider>
     </div>
   );
 }
