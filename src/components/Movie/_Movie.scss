@@ -1,3 +1,4 @@
+@import "./Media";
 $border-color: #d5d5d5;
 $container-shadow: 3px 3px 4px $border-color;
 $container-bg: #e8ebee;
@@ -17,6 +18,15 @@ $orange-btn-color: #f9b44a;
     width: 40%;
     margin: auto;
     margin-top: 2vh;
+
+    @include phone {
+        width: auto;
+        margin: 8px;
+    }
+
+    @include tablet {
+        min-height: 30vh;
+    }
 }
 
 .img-style {

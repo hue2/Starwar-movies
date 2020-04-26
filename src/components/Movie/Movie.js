@@ -1,6 +1,5 @@
 import React, { useContext  } from 'react';
 import { MovieContext } from '../../context/MovieContext';
-import './Movie.scss';
 
 export default function Movie() {
     const { movie }= useContext(MovieContext);

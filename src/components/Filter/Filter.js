@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { MovieContext } from '../../context/MovieContext';
-import "./Filter.scss";
 
 export default function Filter() {
     const [ activeIdBtn, setActive ] = useState(0);

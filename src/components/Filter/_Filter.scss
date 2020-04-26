@@ -1,3 +1,4 @@
+@import "../../Common.scss";
 $btn-color: #f1f2f3;
 $active-btn-color: #005dab;
 $border-color: #d5d5d5;
@@ -41,5 +42,7 @@ $border-color: #d5d5d5;
         border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
     }
+
+    @extend .width-100vw;
 }
 

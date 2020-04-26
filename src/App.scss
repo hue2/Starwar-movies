@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import "./components/Filter/Filter";
+@import "./components/Movie/Movie";
+@import "./Common.scss";
+@import "./Media";
+
 $app-bg: #f1f2f3;
 $nav-bg: #2d3d55;
 
@@ -21,8 +26,16 @@ body {
   color: white;
   font-size: 20px;
   font-weight: 600;
+  @extend .width-100vw;
 }
 
 .logo {
   width: 6%;
+
+  @include phone {
+      width: 20%;
+  }
+  @include tablet {
+    width: 15%;
+  }
 }
